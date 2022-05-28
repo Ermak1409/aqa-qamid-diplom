@@ -35,7 +35,7 @@ public class PaymentTest {
 
 //    Позитивные сценарии
 
-    // Оплата APPROVED картой ОК
+    // Оплата APPROVED картой Пройден
     @Test
     void shouldPayByCardApproved() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -47,7 +47,7 @@ public class PaymentTest {
 
     }
 
-    // Оплата DECLINED картой TODO Issue
+    // Оплата DECLINED картой Не Пройден Issue №1
     @Test
     void shouldPayByCardDeclined() {
         val cardInfo = new DataHelper.CardInfo(getDeclinedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -61,7 +61,7 @@ public class PaymentTest {
 
 //    Негативные сценарии
 
-    // Отправка пустой формы ОК
+    // Отправка пустой формы Пройден
     @Test
     void shouldPayByCardEmptyForm() {
         val Page = new Page();
@@ -70,7 +70,7 @@ public class PaymentTest {
         paymentPage.emptyForm();
     }
 
-    // Пустое поле номер карты ОК
+    // Пустое поле номер карты Пройден
     @Test
     void shouldPayByCardEmptyCard() {
         val cardInfo = new DataHelper.CardInfo(null, getValidMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -80,7 +80,7 @@ public class PaymentTest {
         paymentPage.cardNumberErrorVisible();
     }
 
-    // Короткий номер карты ОК
+    // Короткий номер карты Пройден
     @Test
     void shouldPayByCardShortCard() {
         val cardInfo = new DataHelper.CardInfo(getShortCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -90,7 +90,7 @@ public class PaymentTest {
         paymentPage.cardNumberErrorVisible();
     }
 
-    // Номер карты 0000  TODO Issue
+    // Номер карты 0000 Не Пройден Issue №2
     @Test
     void shouldPayByCardWithNumber0() {
         val cardInfo = new DataHelper.CardInfo(getCardNumber0(), getValidMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -101,7 +101,7 @@ public class PaymentTest {
     }
 
 
-    // Пустое поле месяц ОК
+    // Пустое поле месяц Пройден
     @Test
     void shouldPayByCardEmptyMonth() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), null, getValidYear(), getOwnerName(), getCVC());
@@ -111,7 +111,7 @@ public class PaymentTest {
         paymentPage.monthErrorVisible();
     }
 
-    // Месяц меньше текущего TODO Issue
+    // Месяц меньше текущего Не Пройден Issue №3
     @Test
     void shouldPayByCardWithPastMonth() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getPastMonth(), getValidYear(), getOwnerName(), getCVC());
@@ -121,7 +121,7 @@ public class PaymentTest {
         paymentPage.expiredCardErrorVisible();
     }
 
-    // Месяц 00 ОК
+    // Месяц 00 Пройден
     @Test
     void shouldPayByCardWithMonth00() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthWithNulls(), getValidYear(), getOwnerName(), getCVC());
@@ -131,7 +131,7 @@ public class PaymentTest {
         paymentPage.monthErrorVisible();
     }
 
-    //    Месяц больше 12 ОК
+    //    Месяц больше 12 Пройден
     @Test
     void shouldPayByCardWithMonthOver12() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getMonthOver12(), getValidYear(), getOwnerName(), getCVC());
@@ -142,7 +142,7 @@ public class PaymentTest {
     }
 
 
-    // Пустое поле год ОК
+    // Пустое поле год Пройден
     @Test
     void shouldPayByCardWithoutYear() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), null, getOwnerName(), getCVC());
@@ -153,7 +153,7 @@ public class PaymentTest {
     }
 
 
-    // Год меньше текущего ОК
+    // Год меньше текущего Пройден
     @Test
     void shouldPayByCardWithPastYear() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getPastYear(), getOwnerName(), getCVC());
@@ -163,7 +163,7 @@ public class PaymentTest {
         paymentPage.expiredCardErrorVisible();
     }
 
-    // Год 00 ОК
+    // Год 00 Пройден
     @Test
     void shouldPayByCardWithNullsYear() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getNullsYear(), getOwnerName(), getCVC());
@@ -173,7 +173,7 @@ public class PaymentTest {
         paymentPage.expiredCardErrorVisible();
     }
 
-    // Год больше срока действия карты ОК
+    // Год больше срока действия карты Пройден
     @Test
     void shouldPayByCardWithFutureYear() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getFutureYear(), getOwnerName(), getCVC());
@@ -184,7 +184,7 @@ public class PaymentTest {
     }
 
 
-    // Поле владелец пустое  ОК
+    // Поле владелец пустое Пройден
     @Test
     void shouldPayByCardWithoutName() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), null, getCVC());
@@ -194,7 +194,7 @@ public class PaymentTest {
         paymentPage.ownerErrorVisible();
     }
 
-    // В поле владелец пробел ОК
+    // В поле владелец пробел Пройден
     @Test
     void shouldPayByCardWithNameSpace() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameSpace(), getCVC());
@@ -204,7 +204,7 @@ public class PaymentTest {
         paymentPage.ownerErrorVisible();
     }
 
-    // ФИО владельца со спец символами TODO Issue
+    // ФИО владельца со спец символами Не Пройден Issue №4
     @Test
     void shouldPayByCardWithNameWithSigns() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithSigns(), getCVC());
@@ -214,7 +214,7 @@ public class PaymentTest {
         paymentPage.ownerErrorVisible();
     }
 
-    // ФИО владельца кирилицей TODO Issue
+    // ФИО владельца кириллицей Не Пройден Issue №5
     @Test
     void shouldPayByCardWithNameInRussian() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInRussia(), getCVC());
@@ -224,7 +224,7 @@ public class PaymentTest {
         paymentPage.ownerErrorVisible();
     }
 
-    // ФИО владельца цифрами TODO Issue
+    // ФИО владельца цифрами Не Пройден Issue №6
     @Test
     void shouldPayByCardWithNameInDigits() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameInDigits(), getCVC());
@@ -234,7 +234,7 @@ public class PaymentTest {
         paymentPage.ownerErrorVisible();
     }
 
-    //    Поле CVC пустое ОК
+    //    Поле CVC пустое Пройден
     @Test
     void shouldPayByCardWithoutCVC() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), null);
@@ -244,7 +244,7 @@ public class PaymentTest {
         paymentPage.cvcErrorVisible();
     }
 
-    //    Поле CVC с двумя цифрами ОК
+    //    Поле CVC с двумя цифрами Пройден
     @Test
     void shouldPayByCardWithCVCWithTwoDigits() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCShort());
@@ -254,7 +254,7 @@ public class PaymentTest {
         paymentPage.cvcErrorVisible();
     }
 
-    // Поле CVC с 000 TODO Issue
+    // Поле CVC с 000 Не Пройден Issue №7
     @Test
     void shouldPayByCardWithCVCWithNulls() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCWithNulls());
